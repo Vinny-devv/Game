@@ -3,43 +3,75 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Free Fire 3D - Web Edition</title>
+    <title>Free Fire 3D - Full Prototype</title>
     <style>
         html, body {
-            margin: 0;
-            padding: 0;
-            width: 100%;
-            height: 100%;
-            overflow: hidden;
-            touch-action: none;
-            user-select: none;
-            background-color: #000;
+            margin: 0; padding: 0; width: 100%; height: 100%;
+            overflow: hidden; touch-action: none; user-select: none;
+            background-color: #000; font-family: sans-serif;
         }
-        canvas {
-            width: 100%;
-            height: 100%;
-            display: block;
-        }
-        /* واجهة مستخدم بسيطة (Crosshair) */
+        canvas { width: 100%; height: 100%; display: block; }
+        
+        /* نيشان الإطلاق وسط الشاشة */
         #crosshair {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            width: 10px;
-            height: 10px;
-            background: rgba(255, 0, 85, 0.8);
-            border-radius: 50%;
-            transform: translate(-50%, -50%);
-            pointer-events: none;
-            box-shadow: 0 0 8px #ff0055;
+            position: absolute; top: 50%; left: 50%;
+            width: 12px; height: 12px;
+            border: 2px solid #ff0055; border-radius: 50%;
+            transform: translate(-50%, -50%); pointer-events: none;
         }
+
+        /* واجهة مستخدم اللعبة (HUD) */
+        #hud {
+            position: absolute; top: 20px; left: 20px;
+            color: white; font-weight: bold; font-size: 18px;
+            text-shadow: 2px 2px 4px #000; pointer-events: none;
+        }
+
+        /* شريط الدم / الصحة (HP) */
+        #health-container {
+            position: absolute; bottom: 30px; left: 50%;
+            transform: translateX(-50%); width: 250px;
+            height: 20px; background: rgba(0,0,0,0.6);
+            border: 2px solid #fff; border-radius: 10px; overflow: hidden;
+        }
+        #health-bar {
+            width: 100%; height: 100%; background: #ff0055;
+            transition: width 0.2s ease;
+        }
+
+        /* أزرار التحكم اللمسية (للموبايل والشاشات) */
+        .touch-btn {
+            position: absolute; background: rgba(255, 255, 255, 0.2);
+            border: 2px solid #fff; color: white; border-radius: 50%;
+            width: 70px; height: 70px; font-weight: bold;
+            display: flex; justify-content: center; align-items: center;
+            box-shadow: 0 0 10px rgba(0,0,0,0.5);
+        }
+        .touch-btn:active { background: rgba(255, 0, 85, 0.6); }
+
+        /* توزيع أزرار الحركة والقتال */
+        #btn-shoot { right: 40px; bottom: 130px; width: 85px; height: 85px; background: rgba(255, 0, 85, 0.3); border-color: #ff0055; }
+        #btn-up { left: 80px; bottom: 160px; }
+        #btn-down { left: 80px; bottom: 20px; }
+        #btn-left { left: 10px; bottom: 90px; }
+        #btn-right { left: 150px; bottom: 90px; }
     </style>
 </head>
 <body>
 
     <div id="crosshair"></div>
+    <div id="hud">الأعداء المتبقون: <span id="enemy-count">5</span></div>
+    
+    <div id="health-container">
+        <div id="health-bar"></div>
+    </div>
 
-    <!-- استدعاء Three.js عبر CDN -->
+    <div class="touch-btn" id="btn-shoot">إطلاق</div>
+    <div class="touch-btn" id="btn-up">W</div>
+    <div class="touch-btn" id="btn-down">S</div>
+    <div class="touch-btn" id="btn-left">A</div>
+    <div class="touch-btn" id="btn-right">D</div>
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
     <script src="script.js"></script>
 </body>
