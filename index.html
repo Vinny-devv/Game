@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>لعبة المواعدة - V Scans</title>
+    <style>
+        #game-container { max-width: 500px; margin: auto; text-align: center; }
+        #display-img { width: 100%; border-radius: 10px; }
+        .choice-btn { display: block; width: 100%; margin: 10px 0; padding: 10px; cursor: pointer; }
+    </style>
+</head>
+<body>
+
+    <div id="game-container">
+        <img id="display-img" src="" alt="صورة الشخصية">
+        <h2 id="char-name"></h2>
+        <p id="display-text"></p>
+        <div id="choices-container"></div>
+    </div>
+
+    <!-- هنا يتم تشغيل محرك اللعبة -->
+    <script type="module" src="game.js"></script>
+</body>
+</html>
